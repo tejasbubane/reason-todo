@@ -18,14 +18,18 @@ let make = (~onAdd, _children) => {
     | UpdateText(value) => ReasonReact.Update(value)
     },
   render: self =>
-    <div>
-      <input
-        _type="text"
-        placeholder="Enter the Todo"
-        onChange=(e => self.send(UpdateText(eventVal(e))))
-        value=self.state
-      />
-      <button onClick=(_ => onAdd(self.state))>
+    <div className="form-inline">
+      <div className="form-group">
+        <input
+          _type="text"
+          placeholder="Enter the Todo"
+          className="form-control-plaintext"
+          onChange=(e => self.send(UpdateText(eventVal(e))))
+          value=self.state
+        />
+      </div>
+      <button
+        onClick=(_ => onAdd(self.state)) className="btn btn-primary mb-2">
         (ReasonReact.string("Add"))
       </button>
     </div>,

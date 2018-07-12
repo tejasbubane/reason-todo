@@ -20,11 +20,16 @@ let make = _children => {
       ReasonReact.Update(items);
     },
   render: self =>
-    <div>
-      <Input onAdd=(text => self.send(Add(text))) />
-      <TodoList
-        items=self.state
-        changeStatus=((i, status) => self.send(ChangeStatus(i, status)))
-      />
+    <div className="container mt-5">
+      <h1 className="row"> (ReasonReact.string("Todo App")) </h1>
+      <div className="row">
+        <Input onAdd=(text => self.send(Add(text))) />
+      </div>
+      <div className="row mt-5">
+        <TodoList
+          items=self.state
+          changeStatus=((i, status) => self.send(ChangeStatus(i, status)))
+        />
+      </div>
     </div>,
 };
