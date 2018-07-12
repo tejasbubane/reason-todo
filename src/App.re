@@ -12,7 +12,7 @@ let make = _children => {
   initialState: () => [],
   reducer: (action, state) =>
     switch (action) {
-    | Add(item) => ReasonReact.Update([item.text, ...state])
+    | Add(item) => ReasonReact.Update([item, ...state])
     },
   render: self =>
     <div>

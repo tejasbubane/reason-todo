@@ -12,7 +12,7 @@ let eventVal = event => ReactDOMRe.domElementToObj(
 
 let make = (~onAdd, _children) => {
   ...component,
-  initialState: () => {text: "asas", status: Todo},
+  initialState: () => {text: "", status: Todo},
   reducer: (action, state) =>
     switch (action) {
     | UpdateTodo(value) => ReasonReact.Update({...state, text: value})
