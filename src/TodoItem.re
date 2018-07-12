@@ -2,11 +2,13 @@ open Shared;
 
 let component = ReasonReact.statelessComponent("TodoItem");
 
-let make = (~todo, _children) => {
+let make = (~todo, ~changeStatus, _children) => {
   ...component,
   render: _self =>
     <div>
-      <input _type="checkbox" checked=(boolStatus(todo.status)) />
-      (ReasonReact.string(todo.text))
+      <span> (todo.status |> statusLabel |> ReasonReact.string) </span>
+      <span onClick=(_e => todo.status |> nextStatus |> changeStatus)>
+        (ReasonReact.string(todo.text))
+      </span>
     </div>,
 };

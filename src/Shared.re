@@ -1,14 +1,23 @@
-type status =
+type todoStatus =
   | Todo
+  | Doing
   | Done;
 
 type todoItem = {
   text: string,
-  status,
+  status: todoStatus,
 };
 
-let boolStatus = status =>
+let nextStatus = status =>
   switch (status) {
-  | Todo => false
-  | Done => true
+  | Todo => Doing
+  | Doing => Done
+  | Done => Todo
+  };
+
+let statusLabel = status =>
+  switch (status) {
+  | Todo => "TODO"
+  | Doing => "DOING"
+  | Done => "DONE"
   };

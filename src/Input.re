@@ -1,9 +1,9 @@
 open Shared;
 
-type state = todoItem;
+type state = string;
 
 type action =
-  | UpdateTodo(string);
+  | UpdateText(string);
 
 let component = ReasonReact.reducerComponent("Input");
 let eventVal = event => ReactDOMRe.domElementToObj(
@@ -12,18 +12,18 @@ let eventVal = event => ReactDOMRe.domElementToObj(
 
 let make = (~onAdd, _children) => {
   ...component,
-  initialState: () => {text: "", status: Todo},
-  reducer: (action, state) =>
+  initialState: () => "",
+  reducer: (action, _state) =>
     switch (action) {
-    | UpdateTodo(value) => ReasonReact.Update({...state, text: value})
+    | UpdateText(value) => ReasonReact.Update(value)
     },
   render: self =>
     <div>
       <input
         _type="text"
         placeholder="Enter the Todo"
-        onChange=(e => self.send(UpdateTodo(eventVal(e))))
-        value=self.state.text
+        onChange=(e => self.send(UpdateText(eventVal(e))))
+        value=self.state
       />
       <button onClick=(_ => onAdd(self.state))>
         (ReasonReact.string("Add"))
